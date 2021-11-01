@@ -1,0 +1,74 @@
+package com.company;
+
+import java.util.Locale;
+
+public class Vector2D {
+    public double vX;
+    public double vY;
+    static int count;
+
+
+
+    public Vector2D(){
+        vX=1;
+        vY=1;
+        count++;
+    }
+
+    public Vector2D(double vX, double vY){
+        this.vX=vX;
+        this.vY=vY;
+        count++;
+    }
+    public Vector2D(Vector2D original){
+        this.vX=original.vX;
+        this.vY=original.vY;
+        count++;
+    }
+
+    public void print(){
+        System.out.println("("+String.format(Locale.US, "%.2f", vX)+", "+String.format(Locale.US, "%.2f", vY)+")");
+    }
+
+    public double length(){
+        double v =Math.sqrt(vX*vX+vY*vY);
+        return v;
+    }
+
+    public Vector2D add(Vector2D vector2D){
+        vX+=vector2D.vX;
+        vY+=vector2D.vY;
+        return this;
+
+    }
+
+    public Vector2D sub(Vector2D vector2D){
+        Math.abs(vX-=vector2D.vX);
+        Math.abs(vY-=vector2D.vY);
+        return this;
+    }
+
+    public Vector2D scale(double scaleFactor){
+        vX=vX*scaleFactor;
+        vY=vY*scaleFactor;
+        return this;
+    }
+
+    public Vector2D normalized(){
+        double locLength = length();
+        double inv_length = (1 / locLength);
+        vX *= inv_length;
+        vY *= inv_length;
+        return this;
+    }
+
+      public double dotProduct(Vector2D v){
+            double a;
+            a=this.vX*v.vX+this.vY*v.vY;
+            return a;
+      }
+
+
+
+
+}
